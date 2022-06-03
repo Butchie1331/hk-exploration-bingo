@@ -97,9 +97,13 @@ var bingo = function (size) {
 	$("#tlbr").hover(function () { $(".tlbr").addClass("hover"); }, function () { $(".tlbr").removeClass("hover"); });
 	$("#bltr").hover(function () { $(".bltr").addClass("hover"); }, function () { $(".bltr").removeClass("hover"); });
 
+	var mode = "";
+	if (MODE == "short") { mode = "json_event"; }
+	else { mode = "json"; }
+
 	var request = new XMLHttpRequest;
-	request.open("GET", "https://bingomake-hkjp.herokuapp.com/json?seed=" + SEED, true);
-	request.responseType="text";
+	request.open("GET", "https://bingomake-hkjp.herokuapp.com/" + mode + "?seed=" + SEED, true);
+	request.responseType = "text";
 	request.onload = function () {
 		var bingoBoard = JSON.parse(this.response);
 
@@ -128,7 +132,7 @@ var bingo = function (size) {
 }; // setup
 
 function reseedPage(mode) {
-	var MAX_SEED = 999999; //1 million cards
+	var MAX_SEED = 999999999; //1 million cards
 	var qSeed = "?seed=" + Math.ceil(MAX_SEED * Math.random());
 	var qMode = (mode == "short" || mode == "long") ? "&mode=" + mode : "";
 	var qEx = $('#exploration-check').is(':checked') ? '&exploration=1' : '';
