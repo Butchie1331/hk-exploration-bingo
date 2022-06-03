@@ -10,8 +10,6 @@ var bingo = function (size) {
 		return results[1];
 	}
 
-	var LANG = gup('lang');
-	if (LANG == '') LANG = 'name';
 	var SEED = gup('seed');
 	var MODE = gup('mode');
 	var EXPLORATION = gup("exploration");
@@ -115,15 +113,15 @@ var bingo = function (size) {
 			}
 			//$('#slot'+i).append("<br/>" + bingoBoard[i].types.toString());
 			//$('#slot'+i).append("<br/>" + bingoBoard[i].synergy);
+		}
 
-			if (EXPLORATION) {
-				$('#bingosync-goals').text("Explorationモードが有効のため非表示です");
-			} else {
-				// populate the bingosync-goals
-				// useful to use a test board for bingosync
-				var bingosync_goals = JSON.stringify(bingoBoard);
-				$('#bingosync-goals').text(bingosync_goals);
-			}
+		if (EXPLORATION) {
+			$('#bingosync-goals').text("Explorationモードが有効のため非表示です");
+		} else {
+			// populate the bingosync-goals
+			// useful to use a test board for bingosync
+			var bingosync_goals = JSON.stringify(bingoBoard);
+			$('#bingosync-goals').text(bingosync_goals);
 		}
 	};
 	request.send();

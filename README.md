@@ -1,4 +1,4 @@
-# Hollow Knight Exploration Bingo in Japanese
+# Hollow Knight Exploration Bingo JP
 
 Generator for Hollow Knight Exploration Bingo in Japanese.
 
