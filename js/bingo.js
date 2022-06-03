@@ -14,11 +14,11 @@ var bingo = function (size) {
 	var MODE = gup('mode');
 	var EXPLORATION = gup("exploration");
 
-	if (SEED == "") return reseedPage(MODE);
-
 	if (EXPLORATION) {
 		$('#exploration-check').prop('checked', true);
 	}
+
+	if (SEED == "") return reseedPage(MODE);
 
 	var cardtype = "string";
 
