@@ -1,147 +1,114 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Breath of the Wild Bingo</title>
+	<meta charset="utf-8">
+	<title>Hollow Knight Exploration Bingo JP</title>
 
-    <!-- Style -->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet">
-    <link href="./css/bingo.css" rel="stylesheet" type="text/css">
-    <link href="./css/style.css" rel="stylesheet" type="text/css">
+	<!-- Style -->
+	<link href="css/bingo.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
 
-    <!-- Scripts -->
-    <script src="./js/jquery.min.js"></script>
-    <script src="./js/seedrandom-min.js" type="text/javascript"></script>
-    <script src="./js/bingo.js" type="text/javascript"></script>
+	<!-- Scripts -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/seedrandom-min.js"></script>
+	<script src="js/bingo.js"></script>
 
-    <!-- Bingo Table -->
-    <!--<script src="./tables/board.js" type="text/javascript"></script>-->
-    
-    <!-- Call bingo function -->
-    <script>
-        bingo();
-    </script>
+	<!-- Bingo Table -->
+	<!-- <script src="tables/hollow-knight.js" type="text/javascript"></script> -->
 </head>
-
 <body>
-    <div id="wrap">
-        <div id="main">
-            <div class="container">
-                <div id="bingoPage">
+	<div id="wrap"><div id="main"><div class="container">
+		<div id="bingoPage">
 
-                    <div id="about_bingo">
-                        <h2 style="margin-top:15px; padding-top:0px">Generate a new card</h2>
+			<div id="about_bingo">
+				<p><span class="note">ブックマークする際は<a href="https://butchie1331.github.io/hk-exploration-bingo-jp/", target="_blank">こちら</a>を右クリックしてアドレスをコピーし、登録してください。</span></p>
+                
+				<h2>新規カードの生成</h2>
+				<p id="sortButtons">
+					<a class="sortButton" href="#" onclick="reseedPage();">Normal Card</a>
+					<!-- <a class="sortButton" href="#" onclick="reseedPage('short');">Short Card</a> -->
+					<!-- <a class="sortButton" href="#" onclick="reseedPage('long');">Long Card</a> -->
+					<div><input id="exploration-check" type="checkbox">Exploration</div>
+				</p>
 
-                        <p><span class="note">Please note that if you got linked to this page as your goal, you are not allowed to use a different card.</span></p>
-                        <p style="margin-top:20px;" id="sortButtons">
-                            <a class="sortButton" href="#" onclick="reseedPage();">Normal Card</a>
-                            <a class="sortButton" href="#" onclick="reseedPage('short');">Short Card</a>
-                            <a class="sortButton" href="#" onclick="reseedPage('long');">Long Card</a>
-                            <div><input id="exploration-check" type="checkbox">Exploration</div>
-                        </p>
+				<h2>Bingoについて</h2>
+				<p></p>
 
-                        <h2 style="margin-top:35px; padding-top:0px">Bingo Save File</h2>
-                        <ul>
-                            <li>You start on top of the Temple of Time where you get the Glider.</li>
-                            <li>You are not allowed to have any items in the Save File initially. So drop all your items.</li>
-                            <li>Your Save File must not have left the Plateau yet.</li>
-                            <li>Don't do any unnecessary steps to make your save file.</li>
-                            <li>Your Save File must have done 4 shrines and must not have used those Soul Orbs yet.</li>
-                            <li><a href="http://pastebin.com/fEGxPfNd">Guide for setting up your Bingo File</a></li>
-                        </ul>
-                        <br />
-                        <h2 style="margin-top:5px; padding-top:0px">Rules</h2>
-                        <ul>
-                            <li>Amiibos are not allowed.</li>
-                            <li>DLC is only allowed if all racers agree to it</li>
-                            <li>"Complete x shrines" includes the 4 Plateau shrines.</li>
-                            <li>"Obtain x armor" is the Chest-piece unless "set" is specified.</li>
-                            <li>The Horse God is not a Great Fairy.</li>
-                            <li>Items obtained for goals must be kept until the end.</li>
-                        </ul>
-                        <br />
-                        <h2 style="margin-top:5px; padding-top:0px">Other Board types:</h2>
-                        <ul>
-                            <li><a href="?board=normal_v1">Normal (v1)</a></li>
-                            <li><a href="?board=normal_v2">Normal (v2, experimental and in developement)</a></li>
-                            <li><a href="https://jsbotw.web.fc2.com/exp_bingo/bingo.html">Great Plateau</a></li>
-                            <li><a href="?board=korok">Korok</a></li>
-                            <li><a href="?board=shrine">Shrine</a></li>
-                        </ul><br />
-                        <h2>Goal list for bingosync</h2>
-                        <p><a href="www.bingosync.com">bingosync</a> is a website to synchronize working on a bingoboard, since this goallist might be
-                        under construction, passing this as a custom board might be required</p>
-                        <textarea id="bingosync-goals"></textarea>
-                        <p><span class="note right">Breath of the Wild Bingo by the <a href="https://discord.gg/rF4XeFC">BotW Speedrun Discord</a></br>
-                                Great Plateau Bingo maintained by the <a href="https://discord.gg/7wfC6Pk">japanese community</a></br>
-								This board was created by <a href="https://www.twitch.tv/blaust">Blaust</a>. </br>
-								Japanese translation by <a href="https://twitter.com/phantasm_cubist">Phanty</a> </span></p>
-                    </div>
+				<p>
+					Bingoの内容は、BingoSyncに存在するものを<a href="https://discord.gg/vGJUxrZxzc", target="_blank">Hollow Knight Speedrun in Japan</a>の有志によって日本語化したものです。
+				</p>
 
-                    <div id="results">
-                        <table id="bingo">
-                            <tbody>
-                                <tr>
-                                    <td class="popout" id="tlbr">TL-BR</td>
-                                    <td class="popout" id="col1">COL1</td>
-                                    <td class="popout" id="col2">COL2</td>
-                                    <td class="popout" id="col3">COL3</td>
-                                    <td class="popout" id="col4">COL4</td>
-                                    <td class="popout" id="col5">COL5</td>
-                                </tr>
-                                <tr>
-                                    <td class="popout" id="row1">ROW1</td>
-                                    <td class="row1 col1 tlbr" id="slot1"></td>
-                                    <td class="row1 col2" id="slot2"></td>
-                                    <td class="row1 col3" id="slot3"></td>
-                                    <td class="row1 col4" id="slot4"></td>
-                                    <td class="row1 col5 bltr" id="slot5"></td>
-                                </tr>
-                                <tr>
-                                    <td class="popout" id="row2">ROW2</td>
-                                    <td class="row2 col1" id="slot6"></td>
-                                    <td class="row2 col2 tlbr" id="slot7"></td>
-                                    <td class="row2 col3" id="slot8"></td>
-                                    <td class="row2 col4 bltr" id="slot9"></td>
-                                    <td class="row2 col5" id="slot10"></td>
-                                </tr>
-                                <tr>
-                                    <td class="popout" id="row3">ROW3</td>
-                                    <td class="row3 col1" id="slot11"></td>
-                                    <td class="row3 col2" id="slot12"></td>
-                                    <td class="row3 col3 tlbr bltr" id="slot13"></td>
-                                    <td class="row3 col4" id="slot14"></td>
-                                    <td class="row3 col5" id="slot15"></td>
-                                </tr>
-                                <tr>
-                                    <td class="popout" id="row4">ROW4</td>
-                                    <td class="row4 col1" id="slot16"></td>
-                                    <td class="row4 col2 bltr" id="slot17"></td>
-                                    <td class="row4 col3" id="slot18"></td>
-                                    <td class="row4 col4 tlbr" id="slot19"></td>
-                                    <td class="row4 col5" id="slot20"></td>
-                                </tr>
-                                <tr>
-                                    <td class="popout" id="row5">ROW5</td>
-                                    <td class="row5 col1 bltr" id="slot21"></td>
-                                    <td class="row5 col2" id="slot22"></td>
-                                    <td class="row5 col3" id="slot23"></td>
-                                    <td class="row5 col4" id="slot24"></td>
-                                    <td class="row5 col5 tlbr" id="slot25"></td>
-                                </tr>
-                                <tr>
-                                    <td class="popout" id="bltr">BL-TR</td>
-                                    <td colspan="5" style="display:none;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+				<h2>Explorationモードについて</h2>
+				<ul>
+					<li>Exploration(探索)モードにチェックを入れてカードを生成すると、2マスのみが表示された状態で開始します。</li>
+					<li>いずれかのマスをチェックすると、その上下左右のマスもチェックできるようになります。</li>
+				</ul>
 
-                </div>
-            </div>
-        </div>
-    </div>
+                <h2>Bingosync用JSONデータ</h2>
+                <p>Bingosyncでボード生成するためのJSONデータです。</p>
+                <textarea id="bingosync-goals"></textarea>
+
+				<p>&nbsp;</p>
+				<p><span class="note right">
+                    <a href="www.bingosync.com", target="_blank">Bingosync</a></br>
+                    Japanese bingo by <a href="https://discord.gg/vGJUxrZxzc", target="_blank">Hollow Knight Speedrun in Japan</a>
+                </span></p>
+			</div>
+
+			<div id="results">
+				<table id="bingo"><tbody>
+					<tr>
+						<td class="popout" id="tlbr">TL-BR</td>
+						<td class="popout" id="col1">COL1</td>
+						<td class="popout" id="col2">COL2</td>
+						<td class="popout" id="col3">COL3</td>
+						<td class="popout" id="col4">COL4</td>
+						<td class="popout" id="col5">COL5</td>
+					</tr>
+					<tr>
+						<td class="popout" id="row1">ROW1</td>
+						<td class="row1 col1 tlbr" id="slot1"></td> 
+						<td class="row1 col2" id="slot2"></td> 
+						<td class="row1 col3" id="slot3"></td> 
+						<td class="row1 col4" id="slot4"></td> 
+						<td class="row1 col5 bltr" id="slot5"></td> 
+					</tr><tr> 
+						<td class="popout" id="row2">ROW2</td>
+						<td class="row2 col1" id="slot6"></td> 
+						<td class="row2 col2 tlbr" id="slot7"></td> 
+						<td class="row2 col3" id="slot8"></td> 
+						<td class="row2 col4 bltr" id="slot9"></td> 
+						<td class="row2 col5" id="slot10"></td> 
+					</tr><tr> 
+						<td class="popout" id="row3">ROW3</td>
+						<td class="row3 col1" id="slot11"></td> 
+						<td class="row3 col2" id="slot12"></td> 
+						<td class="row3 col3 tlbr bltr" id="slot13"></td> 
+						<td class="row3 col4" id="slot14"></td> 
+						<td class="row3 col5" id="slot15"></td> 
+					</tr><tr> 
+						<td class="popout" id="row4">ROW4</td>
+						<td class="row4 col1" id="slot16"></td> 
+						<td class="row4 col2 bltr" id="slot17"></td> 
+						<td class="row4 col3" id="slot18"></td> 
+						<td class="row4 col4 tlbr" id="slot19"></td> 
+						<td class="row4 col5" id="slot20"></td> 
+					</tr><tr> 
+						<td class="popout" id="row5">ROW5</td>
+						<td class="row5 col1 bltr" id="slot21"></td> 
+						<td class="row5 col2" id="slot22"></td> 
+						<td class="row5 col3" id="slot23"></td> 
+						<td class="row5 col4" id="slot24"></td> 
+						<td class="row5 col5 tlbr" id="slot25"></td> 
+					</tr>
+					<tr>
+						<td class="popout" id="bltr">BL-TR</td>
+						<td colspan="5" style="display:none;"></td>
+					</tr>
+				</tbody></table>
+			</div>
+
+		</div>
+	</div></div></div>
 </body>
-
 </html>

@@ -1,3 +1,5 @@
-# Breath of the Wild Bingo
+# Hollow Knight Exploration Bingo in Japanese
 
-Generator for various BotW bingo, full credit goes to the BotW bingo community providing goals
+Generator for Hollow Knight Exploration Bingo in Japanese.
+
+Originally developed by lepelog for BotW.
