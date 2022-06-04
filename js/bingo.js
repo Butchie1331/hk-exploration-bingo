@@ -184,13 +184,15 @@ var bingo = function (size) {
 			//$('#slot'+i).append("<br/>" + bingoBoard[i].synergy);
 		}
 
+		var bingosync_goals = JSON.stringify(bingoBoard);
 		if (EXPLORATION) {
-			$('#bingosync-goals').text("Explorationモードが有効のため非表示です");
+			$('#bingosync-goals').text("Explorationモードが有効のため非表示です。Copyは可能です。");
+			$('#bingosync-goals-hidden').text(bingosync_goals);
 		} else {
 			// populate the bingosync-goals
 			// useful to use a test board for bingosync
-			var bingosync_goals = JSON.stringify(bingoBoard);
 			$('#bingosync-goals').text(bingosync_goals);
+			$('#bingosync-goals-hidden').text(bingosync_goals);
 		}
 	};
 	request.send();
@@ -206,6 +208,25 @@ function reseedPage(type) {
 	var qEx = $('#exploration-check').is(':checked') ? '&exploration=1' : '';
 	window.location = qSeed + qType + qSize + qEx;
 	return false;
+}
+
+function copyJson() {
+	var json = $('#bingosync-goals-hidden').text();
+
+	if (navigator.clipboard) {
+		navigator.clipboard.writeText(json).then(() => {
+			$('#copyButton').text("✔");
+			$('#copyButton').css("pointer-events","none")
+			$('#copyButton').css("cursor","default")
+			setTimeout(function () {
+				$('#copyButton').text("Copy")
+				$('#copyButton').css("pointer-events","")
+				$('#copyButton').css("cursor","pointer")
+			}, 1500);
+		})
+	} else {
+		window.clipboardData.setData("Text", str);
+	}
 }
 
 // Backwards Compatability 

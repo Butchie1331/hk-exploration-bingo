@@ -24,18 +24,17 @@
 				<p><span class="note">ブックマークする際は<a href="./?exploration=1", target="_blank">こちら</a>を右クリックしてアドレスをコピーし、登録してください。</span></p>
                 
 				<h2>新規カードの生成</h2>
-				<p></p>
-				<p id="sortButtons">
-					<a class="sortButton" href="#" onclick="reseedPage();">Normal Card</a>
-					<a class="sortButton" href="#" onclick="reseedPage('short');">Short Card</a>
-					<!-- <a class="sortButton" href="#" onclick="reseedPage('long');">Long Card</a> -->
-					<div>
-						<input id="size5" type="radio" name="size-radio" checked>5x5
-						<input id="size4" type="radio" name="size-radio">4x4
-						<input id="size3" type="radio" name="size-radio">3x3
-					</div>
-					<div><input id="exploration-check" type="checkbox">Exploration</div>
-				</p>
+				<div id="sortButtons">
+					<div class="sortButton" href="#" onclick="reseedPage();">Normal Card</div>
+					<div class="sortButton" href="#" onclick="reseedPage('short');">Short Card</div>
+					<!-- <div class="sortButton" href="#" onclick="reseedPage('long');">Long Card</div> -->
+				</div>
+				<div>
+					<input id="size5" type="radio" name="size-radio" checked>5x5
+					<input id="size4" type="radio" name="size-radio">4x4
+					<input id="size3" type="radio" name="size-radio">3x3
+				</div>
+				<div><input id="exploration-check" type="checkbox">Exploration</div>
 				<p></p>
 
 				<h2>Bingoについて</h2>
@@ -54,10 +53,12 @@
 
                 <h2>JSONデータ</h2>
 				<li>Bingosyncでのボード生成に使用できるJSONデータです。</li>
-				<li>カードサイズが5x5以外の場合も5x5として生成されるので、ボード左上の4x4や3x3のマスのみを見てご使用ください。</li>
+				<li>カードサイズが5x5以外の場合も5x5として出力されるので、生成ボード左上の4x4や3x3のマスのみを見てご使用ください。</li>
 				<p></p>
-                <textarea id="bingosync-goals"></textarea>
-
+                <textarea id="bingosync-goals" readonly></textarea>
+                <textarea id="bingosync-goals-hidden" hidden></textarea>
+				<div id="copyButton" onclick="copyJson();">Copy</div>
+				
 				<p>&nbsp;</p>
 				<p><span class="note right">
                     Hollow Knight Bingo by <a href="https://bingosync.com/", target="_blank">Bingosync</a></br>
