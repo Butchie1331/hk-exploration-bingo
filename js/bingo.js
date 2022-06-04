@@ -11,19 +11,19 @@ var bingo = function (size) {
 	}
 
 	var SEED = gup('seed');
-	var MODE = gup('mode');
+	var TYPE = gup('type');
 	var EXPLORATION = gup("exploration");
 
 	if (EXPLORATION) {
 		$('#exploration-check').prop('checked', true);
 	}
 
-	if (SEED == "") return reseedPage(MODE);
+	if (SEED == "") return reseedPage(TYPE);
 
 	var cardtype = "string";
 
-	if (MODE == "short") { cardtype = "Short"; }
-	else if (MODE == "long") { cardtype = "Long"; }
+	if (TYPE == "short") { cardtype = "Short"; }
+	else if (TYPE == "long") { cardtype = "Long"; }
 	else { cardtype = "Normal"; }
 
 	if (typeof size == 'undefined') size = 5;
@@ -36,7 +36,7 @@ var bingo = function (size) {
 
 	if (!EXPLORATION) {
 		$('.popout').click(function () {
-			var mode = null;
+			var type = null;
 			var line = $(this).attr('id');
 			var name = $(this).html();
 			var items = [];
@@ -95,12 +95,12 @@ var bingo = function (size) {
 	$("#tlbr").hover(function () { $(".tlbr").addClass("hover"); }, function () { $(".tlbr").removeClass("hover"); });
 	$("#bltr").hover(function () { $(".bltr").addClass("hover"); }, function () { $(".bltr").removeClass("hover"); });
 
-	var mode = "";
-	if (MODE == "short") { mode = "json_event"; }
-	else { mode = "json"; }
+	var resType = "";
+	if (TYPE == "short") { resType = "json_event"; }
+	else { resType = "json"; }
 
 	var request = new XMLHttpRequest;
-	request.open("GET", "https://bingomake-hkjp.herokuapp.com/" + mode + "?seed=" + SEED, true);
+	request.open("GET", "https://bingomake-hkjp.herokuapp.com/" + resType + "?seed=" + SEED, true);
 	request.responseType = "text";
 	request.onload = function () {
 		var bingoBoard = JSON.parse(this.response);
@@ -129,12 +129,12 @@ var bingo = function (size) {
 	return true;
 }; // setup
 
-function reseedPage(mode) {
+function reseedPage(type) {
 	var MAX_SEED = 999999999; //1 million cards
 	var qSeed = "?seed=" + Math.ceil(MAX_SEED * Math.random());
-	var qMode = (mode == "short" || mode == "long") ? "&mode=" + mode : "";
+	var qType = (type == "short" || type == "long") ? "&type=" + type : "";
 	var qEx = $('#exploration-check').is(':checked') ? '&exploration=1' : '';
-	window.location = qSeed + qMode + qEx;
+	window.location = qSeed + qType + qEx;
 	return false;
 }
 
