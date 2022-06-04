@@ -24,28 +24,38 @@
 				<p><span class="note">ブックマークする際は<a href="./?exploration=1", target="_blank">こちら</a>を右クリックしてアドレスをコピーし、登録してください。</span></p>
                 
 				<h2>新規カードの生成</h2>
+				<p></p>
 				<p id="sortButtons">
 					<a class="sortButton" href="#" onclick="reseedPage();">Normal Card</a>
 					<a class="sortButton" href="#" onclick="reseedPage('short');">Short Card</a>
 					<!-- <a class="sortButton" href="#" onclick="reseedPage('long');">Long Card</a> -->
+					<div>
+						<input id="size5" type="radio" name="size-radio" checked>5x5
+						<input id="size4" type="radio" name="size-radio">4x4
+						<input id="size3" type="radio" name="size-radio">3x3
+					</div>
 					<div><input id="exploration-check" type="checkbox">Exploration</div>
 				</p>
-
-				<h2>Bingoについて</h2>
 				<p></p>
 
+				<h2>Bingoについて</h2>
 				<p>
-					Bingoの内容は、BingoSyncに存在するものを<a href="https://discord.gg/vGJUxrZxzc", target="_blank">Hollow Knight Speedrun in Japan</a>の有志によって日本語化したものです。
+					Bingoの内容は、<a href="https://bingosync.com/", target="_blank">Bingosync</a>に存在するものを<a href="https://discord.gg/vGJUxrZxzc", target="_blank">Hollow Knight Speedrun in Japan</a>の有志によって日本語化したものです。</br>
+					<li>Normal Card: 通常の内容です</li>
+					<li>Short Card: 時間のかかる項目を除いた内容です</li>
 				</p>
+				<p></p>
 
 				<h2>Explorationモードについて</h2>
-				<ul>
 					<li>Exploration(探索)モードにチェックを入れてカードを生成すると、2マスのみが表示された状態で開始します。</li>
 					<li>いずれかのマスをチェックすると、その上下左右のマスもチェックできるようになります。</li>
-				</ul>
+				<p></p>
+				<p></p>
 
-                <h2>Bingosync用JSONデータ</h2>
-                <p>Bingosyncでボード生成するためのJSONデータです。</p>
+                <h2>JSONデータ</h2>
+				<li>Bingosyncでのボード生成に使用できるJSONデータです。</li>
+				<li>カードサイズが5x5以外の場合も5x5として生成されるので、ボード左上の4x4や3x3のマスのみを見てご使用ください。</li>
+				<p></p>
                 <textarea id="bingosync-goals"></textarea>
 
 				<p>&nbsp;</p>

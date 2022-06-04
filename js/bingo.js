@@ -1,5 +1,7 @@
 var bingo = function (size) {
 
+	if (typeof size == 'undefined') size = 5;
+
 	function gup(name) {
 		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 		var regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -12,7 +14,14 @@ var bingo = function (size) {
 
 	var SEED = gup('seed');
 	var TYPE = gup('type');
+	var SIZE = gup('size') ? gup('size') : size;
 	var EXPLORATION = gup("exploration");
+
+	if (SIZE == 3) {
+		$('#size3').prop('checked', true);
+	} else if (SIZE == 4) {
+		$('#size4').prop('checked', true);
+	}
 
 	if (EXPLORATION) {
 		$('#exploration-check').prop('checked', true);
@@ -25,8 +34,6 @@ var bingo = function (size) {
 	if (TYPE == "short") { cardtype = "Short"; }
 	else if (TYPE == "long") { cardtype = "Long"; }
 	else { cardtype = "Normal"; }
-
-	if (typeof size == 'undefined') size = 5;
 
 	Math.seedrandom(SEED); //sets up the RNG
 
@@ -41,7 +48,7 @@ var bingo = function (size) {
 			var name = $(this).html();
 			var items = [];
 			var cells = $('#bingo .' + line);
-			for (var i = 0; i < 5; i++) {
+			for (var i = 0; i < SIZE; i++) {
 				items.push(encodeURIComponent($(cells[i]).html()));
 			}
 			window.open('bingo-popout.html#' + name + '=' + items.join(';;;'), "_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=220, height=460");
@@ -80,6 +87,58 @@ var bingo = function (size) {
 		}
 	);
 
+	if (SIZE == 4) {
+		$("#row5").hide();
+		$("#col5").hide();
+		$("#slot5").hide();
+		$("#slot10").hide();
+		$("#slot15").hide();
+		$("#slot20").hide();
+		$("#slot21").hide();
+		$("#slot22").hide();
+		$("#slot23").hide();
+		$("#slot24").hide();
+		$("#slot25").hide();
+		$("#slot5").removeClass("bltr");
+		$("#slot9").removeClass("bltr");
+		$("#slot13").removeClass("bltr");
+		$("#slot17").removeClass("bltr");
+		$("#slot21").removeClass("bltr");
+		$("#slot4").addClass("bltr");
+		$("#slot8").addClass("bltr");
+		$("#slot12").addClass("bltr");
+		$("#slot16").addClass("bltr");
+	} else if (SIZE == 3) {
+		$("#row4").hide();
+		$("#row5").hide();
+		$("#col4").hide();
+		$("#col5").hide();
+		$("#slot4").hide();
+		$("#slot5").hide();
+		$("#slot9").hide();
+		$("#slot10").hide();
+		$("#slot14").hide();
+		$("#slot15").hide();
+		$("#slot16").hide();
+		$("#slot17").hide();
+		$("#slot18").hide();
+		$("#slot19").hide();
+		$("#slot20").hide();
+		$("#slot21").hide();
+		$("#slot22").hide();
+		$("#slot23").hide();
+		$("#slot24").hide();
+		$("#slot25").hide();
+		$("#slot5").removeClass("bltr");
+		$("#slot9").removeClass("bltr");
+		$("#slot13").removeClass("bltr");
+		$("#slot17").removeClass("bltr");
+		$("#slot21").removeClass("bltr");
+		$("#slot3").addClass("bltr");
+		$("#slot7").addClass("bltr");
+		$("#slot11").addClass("bltr");
+	}
+
 	$("#row1").hover(function () { $(".row1").addClass("hover"); }, function () { $(".row1").removeClass("hover"); });
 	$("#row2").hover(function () { $(".row2").addClass("hover"); }, function () { $(".row2").removeClass("hover"); });
 	$("#row3").hover(function () { $(".row3").addClass("hover"); }, function () { $(".row3").removeClass("hover"); });
@@ -108,8 +167,18 @@ var bingo = function (size) {
 		//populate the actual table on the page
 		for (i = 1; i <= 25; i++) {
 			$('#slot' + i).append(bingoBoard[i - 1].name);
-			if (EXPLORATION && i != 7 && i != 19) {
-				$('#slot' + i).addClass('hidden');
+			if (SIZE == 3) {
+				if (EXPLORATION && i != 1 && i != 13) {
+					$('#slot' + i).addClass('hidden');
+				}
+			} else if (SIZE == 4) {
+				if (EXPLORATION && i != 7 && i != 13) {
+					$('#slot' + i).addClass('hidden');
+				}
+			} else {
+				if (EXPLORATION && i != 7 && i != 19) {
+					$('#slot' + i).addClass('hidden');
+				}
 			}
 			//$('#slot'+i).append("<br/>" + bingoBoard[i].types.toString());
 			//$('#slot'+i).append("<br/>" + bingoBoard[i].synergy);
@@ -133,8 +202,9 @@ function reseedPage(type) {
 	var MAX_SEED = 999999999; //1 million cards
 	var qSeed = "?seed=" + Math.ceil(MAX_SEED * Math.random());
 	var qType = (type == "short" || type == "long") ? "&type=" + type : "";
+	var qSize = $('#size3').is(':checked') ? "&size=3" : $('#size4').is(':checked') ? "&size=4" : "";
 	var qEx = $('#exploration-check').is(':checked') ? '&exploration=1' : '';
-	window.location = qSeed + qType + qEx;
+	window.location = qSeed + qType + qSize + qEx;
 	return false;
 }
 
