@@ -36,6 +36,22 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2045c0', endColorstr='#1e3294',GradientType=0 );
 }
 
+.exploration-init-slots {
+	background:#000811;
+	border:1px #0a245a solid;
+	color:#3c70df;
+	font-size:75%;
+	font-weight:700;
+    width: 30px;
+	height:30px;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+}
+.whitesquare {
+    background-color: white;
+}
+
 #copyButton {
     cursor: pointer;
     font-weight: bold;
