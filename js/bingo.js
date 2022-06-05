@@ -279,7 +279,7 @@ function copyJson() {
 
 	if (navigator.clipboard) {
 		navigator.clipboard.writeText(json).then(() => {
-			$('#copyButton').text("✔");
+			$('#copyButton').text("✓");
 			$('#copyButton').css("pointer-events", "none")
 			$('#copyButton').css("cursor", "default")
 			setTimeout(function () {
