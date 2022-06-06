@@ -44,14 +44,8 @@ var bingo = function (size) {
 	}
 
 	var startSlots = [];
-	var valid = false;
 	startSlots = START.split(",").map((str) => parseInt(str));
-	startSlots.forEach((num) => {
-		if (slots.includes(num)) {
-			valid = true;
-		}
-	})
-	if (!valid) {
+	if (!startSlots.some((num) => { return slots.includes(num); })) {
 		startSlots = defaultSlots;
 	}
 	slots.forEach((slot) => {
@@ -263,7 +257,6 @@ function changeSizeRadio(size) {
 			$("#init-slot" + i).text("");
 		}
 	}
-
 }
 
 function changeExCheck() {

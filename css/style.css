@@ -122,7 +122,7 @@ table {
 	border-collapse:collapse;
 	border-spacing:0;
 	padding:0;
-	width:100%;
+	/* width:100%; */
 }
 td {
 	border:0;
@@ -154,9 +154,9 @@ th {
 
 #bingoPage #results {
 	float:left;
-	margin-right:16px;
+	margin:10px 0 0 10px;
 	text-align:right;
-	width:594px;
+	/* width:594px; */
 }
 
 #bingoPage .newcard {
@@ -217,7 +217,7 @@ th {
 	-moz-user-select:none;
 	-o-user-select:none;
 	-webkit-user-select:none;
-	margin-top:16px;
+	/* margin-top:16px; */
 }
 
 #bingoPage #bingo .rowcol {
@@ -254,11 +254,15 @@ th {
 	border:1px #424242 solid;
 	box-shadow:inset 0 0 50px rgba(0,0,0,0.6);
 	cursor:pointer;
-	height:90px;
+	height:93px;
 	padding:0 5px;
 	text-align:center;
-	width:95px;
-    max-width:95px;
+	width:93px;
+    max-width:93px;
+}
+
+.popout {
+	padding:0 !important;
 }
 
 #bingoPage #bingo tr td:first-child {
@@ -298,6 +302,7 @@ th {
 
 #bingoPage #about_bingo {
 	float:right;
+	margin:10px 10px 0 0;
 	width:365px;
 }
 
@@ -345,8 +350,8 @@ th {
 .container {
 	margin:0 auto;
 	overflow:auto;
-	padding:8px 0 16px 16px;
-	width:976px;
+	/* padding:8px 0 16px 16px; */
+	width:958px;
 }
 
 .red	{ color:#fa5050; }

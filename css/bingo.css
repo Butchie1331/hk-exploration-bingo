@@ -5,10 +5,6 @@
     margin: auto;
 }
 
-#about_bingo {
-    margin-top: 16px;
-}
-
 #sortButtons {
     overflow:visible;
     display: flex;
@@ -36,14 +32,18 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2045c0', endColorstr='#1e3294',GradientType=0 );
 }
 
+#exploration-init {
+    height: 231px;
+}
+
 .exploration-init-slots {
 	background:#000811;
 	border:1px #0a245a solid;
 	color:#3c70df;
 	font-size:75%;
 	font-weight:700;
-    width: 30px;
-	height:30px;
+    width: 50px;
+	height:45px;
     cursor: pointer;
     color: white;
     text-align: center;
