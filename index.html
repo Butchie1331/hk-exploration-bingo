@@ -30,6 +30,11 @@
 					<!-- <div class="sortButton" href="#" onclick="reseedPage('long');">Long Card</div> -->
 				</div>
 				<div>
+					<input id="random-seed" type="radio" name="seed-radio" value="0" onchange="changeSeedRadio(this.value)" checked>Random Seed
+					<input id="custom-seed" type="radio" name="seed-radio" value="1" onchange="changeSeedRadio(this.value)">Custom Seed
+					<input id="seed" type="text" maxlength="9">
+				</div>
+				<div>
 					<input id="size5" type="radio" name="size-radio" value="5" onchange="changeSizeRadio(this.value)">5x5
 					<input id="size4" type="radio" name="size-radio" value="4" onchange="changeSizeRadio(this.value)">4x4
 					<input id="size3" type="radio" name="size-radio" value="3" onchange="changeSizeRadio(this.value)">3x3

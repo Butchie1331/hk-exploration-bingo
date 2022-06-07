@@ -5,6 +5,10 @@
     margin: auto;
 }
 
+#seed {
+    width: 80px;
+}
+
 #sortButtons {
     overflow:visible;
     display: flex;

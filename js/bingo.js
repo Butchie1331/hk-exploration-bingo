@@ -13,6 +13,7 @@ var bingo = function (size) {
 	}
 
 	var SEED = gup('seed');
+	var CUSTOM = gup("custom");
 	var TYPE = gup('type');
 	var SIZE = gup('size') ? gup('size') : size;
 	var EXPLORATION = gup("exploration");
@@ -45,7 +46,7 @@ var bingo = function (size) {
 
 	var startSlots = [];
 	startSlots = START.split(",").map((str) => parseInt(str));
-	if (!startSlots.some((num) => { return slots.includes(num); })) {
+	if ((START != "0") && !startSlots.some((num) => { return slots.includes(num); })) {
 		startSlots = defaultSlots;
 	}
 	slots.forEach((slot) => {
@@ -54,12 +55,21 @@ var bingo = function (size) {
 		}
 	})
 
-	if (EXPLORATION == 1) {
+	if (EXPLORATION == "1") {
 		$('#exploration-check').prop('checked', true);
 		$("#exploration-init").show();
 	}
 
 	if (SEED == "") return reseedPage(TYPE);
+
+	$("#seed").val(SEED);
+
+	if (CUSTOM == "1") {
+		$('#custom-seed').prop('checked', true);
+		$('#seed').prop('disabled', false);
+	} else {
+		$('#seed').prop('disabled', true);
+	}
 
 	var cardtype = "string";
 
@@ -73,7 +83,7 @@ var bingo = function (size) {
 	results.append("<p>HK Bingo JP <strong>v1</strong>&emsp;Seed: <strong>" +
 		SEED + "</strong>&emsp;Card type: <strong>" + cardtype + "</strong></p>");
 
-	if (EXPLORATION != 1) {
+	if (EXPLORATION != "1") {
 		$('.popout').click(function () {
 			var type = null;
 			var line = $(this).attr('id');
@@ -122,12 +132,7 @@ var bingo = function (size) {
 	$("#exploration-init-table tr").on('click', 'td',
 		function () {
 			if ($(this).text() == "●") {
-				var slot = parseInt($(this).attr('id').slice(9));
-				for (i = 1; i <= 25; i++) {
-					if ((i != slot) && ($("#init-slot" + i).text() == "●")) {
-						$(this).text("");
-					}
-				}
+				$(this).text("");
 			} else {
 				$(this).text("●");
 			}
@@ -184,7 +189,7 @@ var bingo = function (size) {
 		//populate the actual table on the page
 		for (i = 1; i <= 25; i++) {
 			$('#slot' + i).append(bingoBoard[i - 1].name);
-			if (EXPLORATION == 1 && !startSlots.includes(i)) {
+			if (EXPLORATION == "1" && !startSlots.includes(i)) {
 				$('#slot' + i).addClass('hidden');
 			}
 			//$('#slot'+i).append("<br/>" + bingoBoard[i].types.toString());
@@ -192,7 +197,7 @@ var bingo = function (size) {
 		}
 
 		var bingosync_goals = JSON.stringify(bingoBoard);
-		if (EXPLORATION == 1) {
+		if (EXPLORATION == "1") {
 			$('#bingosync-goals').text("Explorationモードが有効のため非表示です。Copyは可能です。");
 			$('#bingosync-goals-hidden').text(bingosync_goals);
 		} else {
@@ -209,11 +214,19 @@ var bingo = function (size) {
 
 function reseedPage(type) {
 	var MAX_SEED = 999999999; //1 million cards
-	var qSeed = "?seed=" + Math.ceil(MAX_SEED * Math.random());
+	var qSeed = "";
+	var qCustom = $('#custom-seed').is(':checked') ? "&custom=1" : "";
 	var qType = (type == "short" || type == "long") ? "&type=" + type : "";
 	var qSize = $('#size3').is(':checked') ? "&size=3" : $('#size4').is(':checked') ? "&size=4" : "";
 	var qEx = $('#exploration-check').is(':checked') ? '&exploration=1' : '';
 	var qStart = "";
+
+	if ($("#random-seed").is(":checked")) {
+		qSeed = "?seed=" + Math.ceil(MAX_SEED * Math.random());
+	} else {
+		s = $("#seed").val();
+		qSeed = !isNaN(s) && (parseInt(s) >= 0 && parseInt(s) <= MAX_SEED) ? "?seed=" + s : "?seed=";
+	}
 
 	if (qEx != "") {
 		var startSlots = [];
@@ -222,11 +235,23 @@ function reseedPage(type) {
 				startSlots.push(i);
 			}
 		}
-		qStart = "&start=" + startSlots.join(",");
+		if (startSlots.length) {
+			qStart = "&start=" + startSlots.join(",");
+		} else {
+			qStart = "&start=0";
+		}
 	}
 
-	window.location = qSeed + qType + qSize + qEx + qStart;
+	window.location = qSeed + qCustom + qType + qSize + qEx + qStart;
 	return false;
+}
+
+function changeSeedRadio(isCustom) {
+	if (isCustom == "1") {
+		$("#seed").prop("disabled", false);
+	} else {
+		$("#seed").prop("disabled", true);
+	}
 }
 
 function changeSizeRadio(size) {
