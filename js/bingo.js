@@ -181,7 +181,7 @@ var bingo = function (size) {
 	else { resType = "json"; }
 
 	var request = new XMLHttpRequest;
-	request.open("GET", "https://bingomake-hkjp.herokuapp.com/" + resType + "?seed=" + SEED, true);
+	request.open("GET", "https://bingomake-hkjp.herokuapp.com/" + resType + "?seed=" + SEED + "&size=" + SIZE, true);
 	request.responseType = "text";
 	request.onload = function () {
 		var bingoBoard = JSON.parse(this.response);
