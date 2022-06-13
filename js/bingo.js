@@ -194,10 +194,6 @@ var bingo = function (size) {
 			}
 			//$('#slot'+i).append("<br/>" + bingoBoard[i].types.toString());
 			//$('#slot'+i).append("<br/>" + bingoBoard[i].synergy);
-
-			if (!slots.includes(i)) {
-				bingoBoard[i - 1].name = " ";
-			}
 		}
 
 		var bingosync_goals = JSON.stringify(bingoBoard);
