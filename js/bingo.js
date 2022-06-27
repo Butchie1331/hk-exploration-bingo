@@ -45,7 +45,7 @@ var bingo = function (size) {
 	}
 
 	var startSlots = [];
-	startSlots = START.split(",").map((str) => parseInt(str));
+	startSlots = START.split("-").map((str) => parseInt(str));
 	if ((START != "0") && !startSlots.some((num) => { return slots.includes(num); })) {
 		startSlots = defaultSlots;
 	}
@@ -236,7 +236,7 @@ function reseedPage(type) {
 			}
 		}
 		if (startSlots.length) {
-			qStart = "&start=" + startSlots.join(",");
+			qStart = "&start=" + startSlots.join("-");
 		} else {
 			qStart = "&start=0";
 		}
