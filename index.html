@@ -40,6 +40,7 @@
 					<label><input id="size5" type="radio" name="size-radio" value="5" onchange="changeSizeRadio(this.value)">5x5</label>
 					<label><input id="size4" type="radio" name="size-radio" value="4" onchange="changeSizeRadio(this.value)">4x4</label>
 					<label><input id="size3" type="radio" name="size-radio" value="3" onchange="changeSizeRadio(this.value)">3x3</label>
+					<label><input id="size13" type="radio" name="size-radio" value="13" onchange="changeSizeRadio(this.value)">13x13</label>
 				</div>
 				<div><label><input id="exploration-check" type="checkbox" onchange="changeExCheck()">Exploration</label></div>
 				<div id="exploration-init" hidden>
@@ -89,13 +90,14 @@
 				<p></p>
 
 				<h2>Explorationモードについて</h2>
-					<li>Exploration(探索)モードにチェックを入れて、マスを選択しカードを生成すると、選択したマスのみが表示された状態でスタートします。</li>
+					<li>Exploration(探索)モードにチェックを入れて、マスを選択しカードを生成すると、選択したマスのみが表示された状態でスタートします。（13x13は中央からスタートします。）</li>
 					<li>いずれかのマスをチェックすると、その上下左右のマスもチェックできるようになります。</li>
 				<p></p>
 				<p></p>
 
                 <h2>JSONデータ</h2>
-				<li>Bingosyncでのボード生成に使用できるJSONデータです。</li>
+				<li>生成されたBingoのJSONデータです。</li>
+				<li>5x5以下のサイズの場合、Bingosyncでのボード生成に使用できます。</li>
 				<p></p>
                 <textarea id="bingosync-goals" readonly></textarea>
                 <textarea id="bingosync-goals-hidden" hidden></textarea>
@@ -109,7 +111,7 @@
 			</div>
 
 			<div id="results">
-				<table id="bingo"><tbody>
+				<table id="bingo-standard" class="bingo"><tbody>
 					<tr>
 						<td class="popout" id="tlbr">TL-BR</td>
 						<td class="popout" id="col1">COL1</td>
@@ -153,6 +155,225 @@
 						<td class="row5 col3" id="slot23"></td> 
 						<td class="row5 col4" id="slot24"></td> 
 						<td class="row5 col5" id="slot25"></td> 
+					</tr>
+					<tr>
+						<td class="popout" id="bltr">BL-TR</td>
+						<td colspan="5" style="display:none;"></td>
+					</tr>
+				</tbody></table>
+
+				<table id="bingo-large" class="bingo"><tbody>
+					<tr>
+						<td class="popout" id="tlbr">TL-BR</td>
+						<td class="popout" id="col1">COL1</td>
+						<td class="popout" id="col2">COL2</td>
+						<td class="popout" id="col3">COL3</td>
+						<td class="popout" id="col4">COL4</td>
+						<td class="popout" id="col5">COL5</td>
+						<td class="popout" id="col6">COL6</td>
+						<td class="popout" id="col7">COL7</td>
+						<td class="popout" id="col8">COL8</td>
+						<td class="popout" id="col9">COL9</td>
+						<td class="popout" id="col10">COL10</td>
+						<td class="popout" id="col11">COL11</td>
+						<td class="popout" id="col12">COL12</td>
+						<td class="popout" id="col13">COL13</td>
+					</tr>
+					<tr>
+						<td class="popout" id="row1">ROW1</td>
+						<td class="row1 col1" id="slot1"></td> 
+						<td class="row1 col2" id="slot2"></td> 
+						<td class="row1 col3" id="slot3"></td> 
+						<td class="row1 col4" id="slot4"></td> 
+						<td class="row1 col5" id="slot5"></td> 
+						<td class="row1 col6" id="slot6"></td> 
+						<td class="row1 col7" id="slot7"></td> 
+						<td class="row1 col8" id="slot8"></td> 
+						<td class="row1 col9" id="slot9"></td> 
+						<td class="row1 col10" id="slot10"></td> 
+						<td class="row1 col11" id="slot11"></td> 
+						<td class="row1 col12" id="slot12"></td> 
+						<td class="row1 col13" id="slot13"></td> 
+					</tr><tr> 
+						<td class="popout" id="row2">ROW2</td>
+						<td class="row2 col1" id="slot14"></td> 
+						<td class="row2 col2" id="slot15"></td> 
+						<td class="row2 col3" id="slot16"></td> 
+						<td class="row2 col4" id="slot17"></td> 
+						<td class="row2 col5" id="slot18"></td> 
+						<td class="row2 col6" id="slot19"></td> 
+						<td class="row2 col7" id="slot20"></td> 
+						<td class="row2 col8" id="slot21"></td> 
+						<td class="row2 col9" id="slot22"></td> 
+						<td class="row2 col10" id="slot23"></td> 
+						<td class="row2 col11" id="slot24"></td> 
+						<td class="row2 col12" id="slot25"></td> 
+						<td class="row2 col13" id="slot26"></td> 
+					</tr><tr> 
+						<td class="popout" id="row3">ROW3</td>
+						<td class="row3 col1" id="slot27"></td> 
+						<td class="row3 col2" id="slot28"></td> 
+						<td class="row3 col3" id="slot29"></td> 
+						<td class="row3 col4" id="slot30"></td> 
+						<td class="row3 col5" id="slot31"></td> 
+						<td class="row3 col6" id="slot32"></td> 
+						<td class="row3 col7" id="slot33"></td> 
+						<td class="row3 col8" id="slot34"></td> 
+						<td class="row3 col9" id="slot35"></td> 
+						<td class="row3 col10" id="slot36"></td> 
+						<td class="row3 col11" id="slot37"></td> 
+						<td class="row3 col12" id="slot38"></td> 
+						<td class="row3 col13" id="slot39"></td> 
+					</tr><tr> 
+						<td class="popout" id="row4">ROW4</td>
+						<td class="row4 col1" id="slot40"></td> 
+						<td class="row4 col2" id="slot41"></td> 
+						<td class="row4 col3" id="slot42"></td> 
+						<td class="row4 col4" id="slot43"></td> 
+						<td class="row4 col5" id="slot44"></td> 
+						<td class="row4 col6" id="slot45"></td> 
+						<td class="row4 col7" id="slot46"></td> 
+						<td class="row4 col8" id="slot47"></td> 
+						<td class="row4 col9" id="slot48"></td> 
+						<td class="row4 col10" id="slot49"></td> 
+						<td class="row4 col11" id="slot50"></td> 
+						<td class="row4 col12" id="slot51"></td> 
+						<td class="row4 col13" id="slot52"></td> 
+					</tr><tr> 
+						<td class="popout" id="row5">ROW5</td>
+						<td class="row5 col1" id="slot53"></td> 
+						<td class="row5 col2" id="slot54"></td> 
+						<td class="row5 col3" id="slot55"></td> 
+						<td class="row5 col4" id="slot56"></td> 
+						<td class="row5 col5" id="slot57"></td> 
+						<td class="row5 col6" id="slot58"></td> 
+						<td class="row5 col7" id="slot59"></td> 
+						<td class="row5 col8" id="slot60"></td> 
+						<td class="row5 col9" id="slot61"></td> 
+						<td class="row5 col10" id="slot62"></td> 
+						<td class="row5 col11" id="slot63"></td> 
+						<td class="row5 col12" id="slot64"></td> 
+						<td class="row5 col13" id="slot65"></td> 
+					</tr><tr> 
+						<td class="popout" id="row6">ROW6</td>
+						<td class="row6 col1" id="slot66"></td> 
+						<td class="row6 col2" id="slot67"></td> 
+						<td class="row6 col3" id="slot68"></td> 
+						<td class="row6 col4" id="slot69"></td> 
+						<td class="row6 col5" id="slot70"></td> 
+						<td class="row6 col6" id="slot71"></td> 
+						<td class="row6 col7" id="slot72"></td> 
+						<td class="row6 col8" id="slot73"></td> 
+						<td class="row6 col9" id="slot74"></td> 
+						<td class="row6 col10" id="slot75"></td> 
+						<td class="row6 col11" id="slot76"></td> 
+						<td class="row6 col12" id="slot77"></td> 
+						<td class="row6 col13" id="slot78"></td> 
+					</tr><tr> 
+						<td class="popout" id="row7">row7</td>
+						<td class="row7 col1" id="slot79"></td> 
+						<td class="row7 col2" id="slot80"></td> 
+						<td class="row7 col3" id="slot81"></td> 
+						<td class="row7 col4" id="slot82"></td> 
+						<td class="row7 col5" id="slot83"></td> 
+						<td class="row7 col6" id="slot84"></td> 
+						<td class="row7 col7" id="slot85"></td> 
+						<td class="row7 col8" id="slot86"></td> 
+						<td class="row7 col9" id="slot87"></td> 
+						<td class="row7 col10" id="slot88"></td> 
+						<td class="row7 col11" id="slot89"></td> 
+						<td class="row7 col12" id="slot90"></td> 
+						<td class="row7 col13" id="slot91"></td> 
+					</tr><tr> 
+						<td class="popout" id="row8">row8</td>
+						<td class="row8 col1" id="slot92"></td> 
+						<td class="row8 col2" id="slot93"></td> 
+						<td class="row8 col3" id="slot94"></td> 
+						<td class="row8 col4" id="slot95"></td> 
+						<td class="row8 col5" id="slot96"></td> 
+						<td class="row8 col6" id="slot97"></td> 
+						<td class="row8 col7" id="slot98"></td> 
+						<td class="row8 col8" id="slot99"></td> 
+						<td class="row8 col9" id="slot100"></td> 
+						<td class="row8 col10" id="slot101"></td> 
+						<td class="row8 col11" id="slot102"></td> 
+						<td class="row8 col12" id="slot103"></td> 
+						<td class="row8 col13" id="slot104"></td> 
+					</tr><tr> 
+						<td class="popout" id="row9">row9</td>
+						<td class="row9 col1" id="slot105"></td> 
+						<td class="row9 col2" id="slot106"></td> 
+						<td class="row9 col3" id="slot107"></td> 
+						<td class="row9 col4" id="slot108"></td> 
+						<td class="row9 col5" id="slot109"></td> 
+						<td class="row9 col6" id="slot110"></td> 
+						<td class="row9 col7" id="slot111"></td> 
+						<td class="row9 col8" id="slot112"></td> 
+						<td class="row9 col9" id="slot113"></td> 
+						<td class="row9 col10" id="slot114"></td> 
+						<td class="row9 col11" id="slot115"></td> 
+						<td class="row9 col12" id="slot116"></td> 
+						<td class="row9 col13" id="slot117"></td> 
+					</tr><tr> 
+						<td class="popout" id="row10">row10</td>
+						<td class="row10 col1" id="slot118"></td> 
+						<td class="row10 col2" id="slot119"></td> 
+						<td class="row10 col3" id="slot120"></td> 
+						<td class="row10 col4" id="slot121"></td> 
+						<td class="row10 col5" id="slot122"></td> 
+						<td class="row10 col6" id="slot123"></td> 
+						<td class="row10 col7" id="slot124"></td> 
+						<td class="row10 col8" id="slot125"></td> 
+						<td class="row10 col9" id="slot126"></td> 
+						<td class="row10 col10" id="slot127"></td> 
+						<td class="row10 col11" id="slot128"></td> 
+						<td class="row10 col12" id="slot129"></td> 
+						<td class="row10 col13" id="slot130"></td> 
+					</tr><tr> 
+						<td class="popout" id="row11">row11</td>
+						<td class="row11 col1" id="slot131"></td> 
+						<td class="row11 col2" id="slot132"></td> 
+						<td class="row11 col3" id="slot133"></td> 
+						<td class="row11 col4" id="slot134"></td> 
+						<td class="row11 col5" id="slot135"></td> 
+						<td class="row11 col6" id="slot136"></td> 
+						<td class="row11 col7" id="slot137"></td> 
+						<td class="row11 col8" id="slot138"></td> 
+						<td class="row11 col9" id="slot139"></td> 
+						<td class="row11 col10" id="slot140"></td> 
+						<td class="row11 col11" id="slot141"></td> 
+						<td class="row11 col12" id="slot142"></td> 
+						<td class="row11 col13" id="slot143"></td> 
+					</tr><tr> 
+						<td class="popout" id="row12">row12</td>
+						<td class="row12 col1" id="slot144"></td> 
+						<td class="row12 col2" id="slot145"></td> 
+						<td class="row12 col3" id="slot146"></td> 
+						<td class="row12 col4" id="slot147"></td> 
+						<td class="row12 col5" id="slot148"></td> 
+						<td class="row12 col6" id="slot149"></td> 
+						<td class="row12 col7" id="slot150"></td> 
+						<td class="row12 col8" id="slot151"></td> 
+						<td class="row12 col9" id="slot152"></td> 
+						<td class="row12 col10" id="slot153"></td> 
+						<td class="row12 col11" id="slot154"></td> 
+						<td class="row12 col12" id="slot155"></td> 
+						<td class="row12 col13" id="slot156"></td> 
+					</tr><tr> 
+						<td class="popout" id="row13">row13</td>
+						<td class="row13 col1" id="slot157"></td> 
+						<td class="row13 col2" id="slot158"></td> 
+						<td class="row13 col3" id="slot159"></td> 
+						<td class="row13 col4" id="slot160"></td> 
+						<td class="row13 col5" id="slot161"></td> 
+						<td class="row13 col6" id="slot162"></td> 
+						<td class="row13 col7" id="slot163"></td> 
+						<td class="row13 col8" id="slot164"></td> 
+						<td class="row13 col9" id="slot165"></td> 
+						<td class="row13 col10" id="slot166"></td> 
+						<td class="row13 col11" id="slot167"></td> 
+						<td class="row13 col12" id="slot168"></td> 
+						<td class="row13 col13" id="slot169"></td> 
 					</tr>
 					<tr>
 						<td class="popout" id="bltr">BL-TR</td>

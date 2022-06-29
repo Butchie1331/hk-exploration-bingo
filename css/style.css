@@ -212,7 +212,7 @@ th {
 	margin-right:0;
 }
 
-#bingoPage #bingo {
+#bingoPage .bingo {
 	-khtml-user-select:none;
 	-moz-user-select:none;
 	-o-user-select:none;
@@ -220,7 +220,7 @@ th {
 	/* margin-top:16px; */
 }
 
-#bingoPage #bingo .rowcol {
+#bingoPage .bingo .rowcol {
 	background:#000811;
 	border:1px #0a245a solid;
 	color:#3c70df;
@@ -228,12 +228,12 @@ th {
 	font-weight:700;
 }
 
-#bingoPage #bingo .rowcol:hover {
+#bingoPage .bingo .rowcol:hover {
 	background:#1448b3;
 	color:#fff;
 }
 
-#bingoPage #bingo tr:first-child td,#bingoPage #bingo tr:last-child td {
+#bingoPage .bingo tr:first-child td,#bingoPage .bingo tr:last-child td {
 	background:#000811;
 	border:1px #0a245a solid;
 	color:#3c70df;
@@ -242,12 +242,12 @@ th {
 	height:30px;
 }
 
-#bingoPage #bingo tr:first-child td:hover,#bingoPage #bingo tr:last-child td:hover {
+#bingoPage .bingo tr:first-child td:hover,#bingoPage .bingo tr:last-child td:hover {
 	background:#1448b3;
 	color:#fff;
 }
 
-#bingoPage #bingo tr td {
+#bingoPage .bingo tr td {
 	-moz-box-shadow:inset 0 0 50px rgba(0,0,0,0.6);
 	-webkit-box-shadow:inset 0 0 50px rgba(0,0,0,0.6);
 	background:#000;
@@ -265,7 +265,7 @@ th {
 	padding:0 !important;
 }
 
-#bingoPage #bingo tr td:first-child {
+#bingoPage .bingo tr td:first-child {
 	background:#000811;
 	border:1px #0a245a solid;
 	color:#3c70df;
@@ -274,30 +274,58 @@ th {
 	width:35px;
 }
 
-#bingoPage #bingo tr td:first-child:hover {
+#bingoPage .bingo tr td:first-child:hover {
 	background:#1448b3;
 	color:#fff;
 }
 
-#bingoPage #bingo tr td:hover,#bingoPage #bingo tr td.hover {
+#bingoPage .bingo tr td:hover,#bingoPage .bingo tr td.hover {
 	background:#001a36;
 	color:#fff;
 }
 
-#bingoPage #bingo tr td.greensquare {
+#bingoPage .bingo tr td.greensquare {
 	background:#051;
 }
 
-#bingoPage #bingo tr td.greensquare:hover,#bingoPage #bingo tr td.greensquare.hover {
+#bingoPage .bingo tr td.greensquare:hover,#bingoPage .bingo tr td.greensquare.hover {
 	background:#072;
 }
 
-#bingoPage #bingo tr td.redsquare {
+#bingoPage .bingo tr td.redsquare {
 	background:#501;
 }
 
-#bingoPage #bingo tr td.redsquare:hover,#bingoPage #bingo tr td.redsquare.hover {
+#bingoPage .bingo tr td.redsquare:hover,#bingoPage .bingo tr td.redsquare.hover {
 	background:#702;
+}
+
+#bingoPage .bingo tr td.bluesquare {
+	background:#105;
+}
+
+#bingoPage .bingo tr td.bluesquare:hover,#bingoPage .bingo tr td.bluesquare.hover {
+	background:#207;
+}
+
+.blue	{ color:#00f; }
+
+#bingoPage .bingo tr td.blue:hover,#bingoPage .bingo tr td.blue.hover {
+	color:#00f;
+}
+
+#bingoPage .bingo tr td.yellowsquare {
+	background:#551;
+}
+
+#bingoPage .bingo tr td.yellowsquare:hover,#bingoPage .bingo tr td.yellowsquare.hover {
+	background:#772;
+}
+
+.yellow	{ color:#ff0; }
+
+#bingoPage .bingo tr td.yellow:hover,#bingoPage .bingo tr td.yellow.hover {
+	color:#ff0;
 }
 
 #bingoPage #about_bingo {

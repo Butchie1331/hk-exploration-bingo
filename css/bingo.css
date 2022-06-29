@@ -1,4 +1,4 @@
-#bingo img {
+.bingo img {
     max-width:  95px;
     max-height: 70px;
     display: block;
@@ -98,7 +98,7 @@ td.hidden {
     color: rgba(0,0,0,0);
 }
 
-#bingoPage #bingo tr td.hidden:hover,#bingoPage #bingo tr td.hidden.hover {
+#bingoPage .bingo tr td.hidden:hover,#bingoPage .bingo tr td.hidden.hover {
 	background:#001a36;
 	color: rgba(0,0,0,0);
 }
