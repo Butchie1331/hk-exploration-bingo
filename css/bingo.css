@@ -102,3 +102,24 @@ td.hidden {
 	background:#001a36;
 	color: rgba(0,0,0,0);
 }
+
+td.v-hidden {
+    visibility: hidden;
+    border: 0 !important;
+}
+
+td.b-top {
+    border-top: 1px #424242 solid !important;
+}
+
+td.b-right {
+    border-right: 1px #424242 solid !important;
+}
+
+td.b-bottom {
+    border-bottom: 1px #424242 solid !important;
+}
+
+td.b-left {
+    border-left: 1px #424242 solid !important;
+}

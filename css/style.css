@@ -279,6 +279,26 @@ th {
 	color:#fff;
 }
 
+#bingoPage #bingo-roguelike tr td:first-child {
+	background:#000811;
+	border:1px #0a245a solid;
+	color:#3c70df;
+	font-size:75%;
+	font-weight:700;
+	width:35px;
+	cursor: default;
+}
+
+#bingoPage #bingo-roguelike tr td:first-child:hover {
+	background:#001a36;
+	color:#fff;
+}
+
+.currentFloor {
+	background:#1448b3 !important;
+	color:#fff !important;
+}
+
 #bingoPage .bingo tr td:hover,#bingoPage .bingo tr td.hover {
 	background:#001a36;
 	color:#fff;
@@ -300,6 +320,13 @@ th {
 	background:#702;
 }
 
+.red { color:#f00 !important; }
+
+#bingoPage #bingo tr td.red:hover,#bingoPage #bingo tr td.red.hover {
+	color:#f00;
+}
+
+
 #bingoPage .bingo tr td.bluesquare {
 	background:#105;
 }
@@ -308,7 +335,7 @@ th {
 	background:#207;
 }
 
-.blue	{ color:#00f; }
+.blue { color:#00f !important; }
 
 #bingoPage .bingo tr td.blue:hover,#bingoPage .bingo tr td.blue.hover {
 	color:#00f;
@@ -322,11 +349,13 @@ th {
 	background:#772;
 }
 
-.yellow	{ color:#ff0; }
+.yellow	{ color:#ff0 !important; }
 
 #bingoPage .bingo tr td.yellow:hover,#bingoPage .bingo tr td.yellow.hover {
 	color:#ff0;
 }
+
+.gray { color:#808080 !important; }
 
 #bingoPage #about_bingo {
 	float:right;
@@ -381,10 +410,6 @@ th {
 	/* padding:8px 0 16px 16px; */
 	width:958px;
 }
-
-.red	{ color:#fa5050; }
-.green	{ color:#52d64f; }
-.grey	{ color:#808080; }
 
 .small	{ font-size:75%; }
 
