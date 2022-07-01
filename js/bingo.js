@@ -36,16 +36,23 @@ var bingo = function (size) {
 		$('#bingo-large').remove();
 		$('.container').css('width', '1800px');
 		$('#roguelike').prop('checked', true);
-		$('#size-radio').hide();
 		$('#size5').prop('checked', true);
+		$('#size-radio').hide();
+		$("#exploration-init").hide();
 		startSlots = [7];
 		interSlots = [98, 150, 202];
 		goalSlots = [254];
 	} else {
 		if (MODE == "exploration") {
 			$('#exploration').prop('checked', true);
+			if (SIZE != 13) {
+				$("#exploration-init").show();
+			} else {
+				$("#exploration-init").hide();
+			}
 		} else {
 			$('#standard').prop('checked', true);
+			$("#exploration-init").hide();
 		}
 
 		if (SIZE == 13) {
@@ -101,12 +108,7 @@ var bingo = function (size) {
 		})
 	}
 
-	if (MODE == "exploration") {
-		$('#exploration').prop('checked', true);
-		if (SIZE != 13) {
-			$("#exploration-init").show();
-		}
-	}
+	$('.container').show();
 
 	if (CUSTOM == "1") {
 		$('#custom-seed').prop('checked', true);
@@ -484,6 +486,22 @@ function changeSeedRadio(isCustom) {
 	}
 }
 
+function changeModeRadio() {
+	if ($('#roguelike').is(':checked')) {
+		$('#size5').prop('checked', true);
+		$('#size-radio').hide();
+		$("#exploration-init").hide();
+	} else if ($('#exploration').is(':checked')) {
+		$('#size-radio').show();
+
+		var size = parseInt($('input[name="size-radio"]:checked').val());
+		changeSizeRadio(size);
+	} else {
+		$('#size-radio').show();
+		$("#exploration-init").hide();
+	}
+}
+
 function changeSizeRadio(size) {
 	var slots = [];
 	var defaultStartSlots = [];
@@ -518,24 +536,6 @@ function changeSizeRadio(size) {
 				$("#init-slot" + i).text("");
 			}
 		}
-	}
-}
-
-function changeModeRadio() {
-	if ($('#roguelike').is(':checked')) {
-		$('#size-radio').hide();
-		$("#exploration-init").hide();
-	} else if ($('#exploration').is(':checked')) {
-		$('#size-radio').show();
-
-		var size = parseInt($('input[name="size-radio"]:checked').val());
-		changeSizeRadio(size);
-		if (size != 13) {
-			$("#exploration-init").show();
-		}
-	} else {
-		$('#size-radio').show();
-		$("#exploration-init").hide();
 	}
 }
 
