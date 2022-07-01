@@ -421,6 +421,9 @@ var bingo = function (size) {
 			$('#bingosync-goals').text(bingosync_goals);
 			$('#bingosync-goals-hidden').text(bingosync_goals);
 		}
+
+		$(".loader").remove();
+		$("#results").removeClass("mask");
 	};
 	request.send();
 
