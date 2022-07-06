@@ -41,17 +41,37 @@
 }
 
 .exploration-init-slots {
-	background:#000811;
-	border:1px #0a245a solid;
-	color:#3c70df;
+	background:#000;
+	border:1px #424242 solid;
 	font-size:75%;
-	font-weight:700;
     width: 50px;
 	height:45px;
     cursor: pointer;
     color: white;
     text-align: center;
 }
+
+.exploration-init-slots:hover,.exploration-init-slots.hover {
+	background:#001a36;
+	color:#fff;
+}
+
+.exploration-init-slots.bluesquare {
+	background:#105;
+}
+
+.exploration-init-slots.bluesquare:hover,.exploration-init-slots.bluesquare.hover {
+	background:#207;
+}
+
+.exploration-init-slots.yellowsquare {
+	background:#551;
+}
+
+.exploration-init-slots.yellowsquare:hover,.exploration-init-slots.yellowsquare.hover {
+	background:#772;
+}
+
 .whitesquare {
     background-color: white;
 }

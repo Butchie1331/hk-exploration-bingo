@@ -46,9 +46,9 @@ var bingo = function (size) {
 		if (MODE == "exploration") {
 			$('#exploration').prop('checked', true);
 			if (SIZE != 13) {
-				$("#exploration-init").show();
+				$("#exploration-init-form").hide();
 			} else {
-				$("#exploration-init").hide();
+				$("#exploration-init-table").hide();
 			}
 		} else {
 			$('#standard').prop('checked', true);
@@ -94,18 +94,27 @@ var bingo = function (size) {
 		startSlots = START.split("-").map((str) => parseInt(str));
 		if ((START != "0") && !startSlots.some((num) => { return slots.includes(num); })) {
 			startSlots = defaultStartSlots;
+		} else {
+			startSlots = startSlots.filter((x) => { return !Number.isNaN(x) && slots.includes(x); });
 		}
 
 		goalSlots = GOAL.split("-").map((str) => parseInt(str));
 		if ((GOAL != "0") && !goalSlots.some((num) => { return slots.includes(num); })) {
 			goalSlots = defaultGoalSlots;
+		} else {
+			goalSlots = goalSlots.filter((x) => { return !Number.isNaN(x) && slots.includes(x); });
 		}
 
 		slots.forEach((slot) => {
 			if (startSlots.includes(slot)) {
-				$("#init-slot" + slot).text("●");
+				$("#init-slot" + slot).text("S").addClass("bluesquare");
+			} else if (goalSlots.includes(slot)) {
+				$("#init-slot" + slot).text("G").addClass("yellowsquare");
 			}
 		})
+
+		$("#exploration-init-form-start").val(startSlots.join("-"));
+		$("#exploration-init-form-goal").val(goalSlots.join("-"));
 	}
 
 	$('.container').show();
@@ -286,10 +295,12 @@ var bingo = function (size) {
 
 	$("#exploration-init-table tr").on('click', 'td',
 		function () {
-			if ($(this).text() == "●") {
-				$(this).text("");
+			if ($(this).text() == "S") {
+				$(this).text("G").removeClass("bluesquare").addClass("yellowsquare");
+			} else if ($(this).text() == "G") {
+				$(this).text("").removeClass("yellowsquare");
 			} else {
-				$(this).text("●");
+				$(this).text("S").addClass("bluesquare");
 			}
 		}
 	);
@@ -456,7 +467,7 @@ function reseedPage(type) {
 	if ($("#random-seed").is(":checked")) {
 		qSeed = "?seed=" + Math.ceil(MAX_SEED * Math.random());
 	} else {
-		s = $("#seed").val();
+		var s = $("#seed").val();
 		qSeed = !isNaN(s) && (parseInt(s) >= 0 && parseInt(s) <= MAX_SEED) ? "?seed=" + s : "?seed=" + Math.ceil(MAX_SEED * Math.random());
 	}
 
@@ -468,19 +479,38 @@ function reseedPage(type) {
 
 	if (qMode == "&mode=exploration") {
 		if (qSize == "&size=13") {
-			qStart = "&start=85";
-			qGoal = "&goal=1-13-157-169";
+			var start = $("#exploration-init-form-start").val();
+			var goal = $("#exploration-init-form-goal").val();
+
+			if (start.length) {
+				qStart = "&start=" + start;
+			} else {
+				qStart = "&start=0";
+			}
+			if (goal.length) {
+				qGoal = "&goal=" + goal;
+			} else {
+				qGoal = "&goal=0";
+			}
 		} else {
 			var startSlots = [];
+			var goalSlots = [];
 			for (i = 1; i <= 25; i++) {
-				if ($("#init-slot" + i).text() == "●") {
+				if ($("#init-slot" + i).text() == "S") {
 					startSlots.push(i);
+				} else if ($("#init-slot" + i).text() == "G") {
+					goalSlots.push(i);
 				}
 			}
 			if (startSlots.length) {
 				qStart = "&start=" + startSlots.join("-");
 			} else {
 				qStart = "&start=0";
+			}
+			if (goalSlots.length) {
+				qGoal = "&goal=" + goalSlots.join("-");
+			} else {
+				qGoal = "&goal=0";
 			}
 		}
 	}
@@ -504,6 +534,7 @@ function changeModeRadio() {
 		$("#exploration-init").hide();
 	} else if ($('#exploration').is(':checked')) {
 		$('#size-radio').show();
+		$("#exploration-init").show();
 
 		var size = parseInt($('input[name="size-radio"]:checked').val());
 		changeSizeRadio(size);
@@ -516,6 +547,7 @@ function changeModeRadio() {
 function changeSizeRadio(size) {
 	var slots = [];
 	var defaultStartSlots = [];
+	var defaultGoalSlots = [];
 
 	if (size == 3) {
 		slots = [1, 2, 3, 6, 7, 8, 11, 12, 13];
@@ -529,10 +561,14 @@ function changeSizeRadio(size) {
 	}
 
 	if (size == 13) {
-		$("#exploration-init").hide();
+		$("#exploration-init-table").hide();
+		$("#exploration-init-form").show();
+		$("#exploration-init-form-start").val("85");
+		$("#exploration-init-form-goal").val("1-13-157-169");
 	} else {
 		if ($('#exploration').is(':checked')) {
-			$("#exploration-init").show();
+			$("#exploration-init-table").show();
+			$("#exploration-init-form").hide();
 		}
 		for (i = 1; i <= 25; i++) {
 			if (slots.includes(i)) {
@@ -542,9 +578,11 @@ function changeSizeRadio(size) {
 			}
 
 			if (defaultStartSlots.includes(i)) {
-				$("#init-slot" + i).text("●");
+				$("#init-slot" + i).text("S").removeClass("yellowsquare").addClass("bluesquare");
+			} else if (defaultGoalSlots.includes(i)) {
+				$("#init-slot" + i).text("G").removeClass("bluesquare").addClass("yellowsquare");
 			} else {
-				$("#init-slot" + i).text("");
+				$("#init-slot" + i).text("").removeClass("bluesquare").removeClass("yellowsquare");
 			}
 		}
 	}
