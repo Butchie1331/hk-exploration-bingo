@@ -161,7 +161,15 @@ var bingo = function (size) {
 			} else if ($(this).hasClass('redsquare')) {
 				$(this).removeClass('redsquare')
 			} else {
+				if ($(this).hasClass('bluesquare')) {
+					$(this).removeClass('bluesquare');
+					$(this).addClass('blue');
+				} else if ($(this).hasClass('yellowsquare')) {
+					$(this).removeClass('yellowsquare');
+					$(this).addClass('yellow');
+				}
 				$(this).addClass('greensquare');
+
 				var slot = parseInt($(this).attr('id').slice(4));
 				// maybe unhide more goals
 				// dividable by 5? nothing to the right
@@ -182,17 +190,18 @@ var bingo = function (size) {
 	$("#bingo-large tr").on('click', 'td:not(.popout):not(.hidden)',
 		function () {
 			if ($(this).hasClass('greensquare')) {
-				$(this).addClass('redsquare').removeClass('greensquare');
+				$(this).removeClass('greensquare').addClass('redsquare');
 			} else if ($(this).hasClass('redsquare')) {
 				$(this).removeClass('redsquare')
 			} else {
 				if ($(this).hasClass('bluesquare')) {
+					$(this).removeClass('bluesquare');
 					$(this).addClass('blue');
 				} else if ($(this).hasClass('yellowsquare')) {
+					$(this).removeClass('yellowsquare');
 					$(this).addClass('yellow');
-				} else {
-					$(this).addClass('greensquare');
 				}
+				$(this).addClass('greensquare');
 
 				var slot = parseInt($(this).attr('id').slice(4));
 				// maybe unhide more goals
@@ -216,14 +225,16 @@ var bingo = function (size) {
 			$(this).addClass('disabled');
 
 			if ($(this).hasClass('bluesquare')) {
+				$(this).removeClass('bluesquare');
 				$(this).addClass('blue');
 			} else if ($(this).hasClass('redsquare')) {
+				$(this).removeClass('redsquare');
 				$(this).addClass('red');
 			} else if ($(this).hasClass('yellowsquare')) {
+				$(this).removeClass('yellowsquare');
 				$(this).addClass('yellow');
-			} else {
-				$(this).addClass('greensquare');
 			}
+			$(this).addClass('greensquare');
 
 			var slot = parseInt($(this).attr('id').slice(4));
 
@@ -287,10 +298,10 @@ var bingo = function (size) {
 		for (i = 1; i <= 260; i++) {
 			if (startSlots.includes(i)) {
 				$("#slot" + i).addClass("bluesquare");
-			} else if (goalSlots.includes(i)) {
-				$("#slot" + i).addClass("yellowsquare");
 			} else if (interSlots.includes(i)) {
 				$("#slot" + i).addClass("redsquare");
+			} else if (goalSlots.includes(i)) {
+				$("#slot" + i).addClass("yellowsquare");
 			}
 		}
 	} else {
@@ -315,7 +326,7 @@ var bingo = function (size) {
 				$("#slot" + i).addClass("bltr");
 			}
 
-			if (MODE == "exploration" && SIZE == 13) {
+			if (MODE == "exploration") {
 				if (startSlots.includes(i)) {
 					$("#slot" + i).addClass("bluesquare");
 				} else if (goalSlots.includes(i)) {
