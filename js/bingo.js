@@ -142,6 +142,48 @@ var bingo = function (size) {
 	results.append("<p>HK Bingo JP <strong>v1</strong>&emsp;Seed: <strong>" +
 		SEED + "</strong>&emsp;Card type: <strong>" + cardtype + "</strong></p>");
 
+	if (MODE != "roguelike" && SIZE <= 5) { // can't paste 200+ emoji to discord
+		results.append("<div id='copyResultButton'>Copy Result</div>")
+	}
+
+	$("#copyResultButton").click(function () {
+		var digits = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "0️⃣"];
+		var result = "#️⃣" + digits.slice(0, SIZE).join("") + "\r\n";
+		var j = 0;
+		slots.forEach((slot, i) => {
+			if (SIZE == 3 || SIZE == 4 ? slot % 5 == 1 : slot % SIZE == 1) {
+				result = result + digits[j] + "||";
+				j++;
+			}
+
+			if ($("#slot" + slot).hasClass("greensquare")) {
+				result = result + "🟩";
+			} else if ($("#slot" + slot).hasClass("redsquare")) {
+				result = result + "🟥";
+			} else {
+				result = result + "⬜";
+			}
+
+			if (SIZE == 3 || SIZE == 4 ? slot % 5 == SIZE : slot % SIZE == 0) {
+				result = result + "||";
+				if (i != slots.length - 1) {
+					result = result + "\r\n";
+				}
+			}
+		});
+
+		navigator.clipboard.writeText(result).then(() => {
+			$('#copyResultButton').text("✓");
+			$('#copyResultButton').css("pointer-events", "none");
+			$('#copyResultButton').css("cursor", "default");
+			setTimeout(function () {
+				$('#copyResultButton').text("Copy Result");
+				$('#copyResultButton').css("pointer-events", "");
+				$('#copyResultButton').css("cursor", "pointer");
+			}, 1500);
+		});
+	});
+
 	if (MODE == "standard") {
 		$('.popout').click(function () {
 			var type = null;
@@ -591,20 +633,16 @@ function changeSizeRadio(size) {
 function copyJson() {
 	var json = $('#bingosync-goals-hidden').text();
 
-	if (navigator.clipboard) {
-		navigator.clipboard.writeText(json).then(() => {
-			$('#copyButton').text("✓");
-			$('#copyButton').css("pointer-events", "none")
-			$('#copyButton').css("cursor", "default")
-			setTimeout(function () {
-				$('#copyButton').text("Copy")
-				$('#copyButton').css("pointer-events", "")
-				$('#copyButton').css("cursor", "pointer")
-			}, 1500);
-		})
-	} else {
-		window.clipboardData.setData("Text", str);
-	}
+	navigator.clipboard.writeText(json).then(() => {
+		$('#copyJsonButton').text("✓");
+		$('#copyJsonButton').css("pointer-events", "none");
+		$('#copyJsonButton').css("cursor", "default");
+		setTimeout(function () {
+			$('#copyJsonButton').text("Copy JSON");
+			$('#copyJsonButton').css("pointer-events", "");
+			$('#copyJsonButton').css("cursor", "pointer");
+		}, 1500);
+	});
 }
 
 // Backwards Compatability 
