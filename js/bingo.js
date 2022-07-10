@@ -142,17 +142,17 @@ var bingo = function (size) {
 	results.append("<p>HK Bingo JP <strong>v1</strong>&emsp;Seed: <strong>" +
 		SEED + "</strong>&emsp;Card type: <strong>" + cardtype + "</strong></p>");
 
-	if (MODE != "roguelike" && SIZE <= 5) { // can't paste 200+ emoji to discord
+	if (MODE != "roguelike") {
 		results.append("<div id='copyResultButton'>Copy Result</div>")
 	}
 
 	$("#copyResultButton").click(function () {
-		var digits = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "0️⃣"];
-		var result = "#️⃣" + digits.slice(0, SIZE).join("") + "\r\n";
+		var digits = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "0️⃣", "1️⃣", "2️⃣", "3️⃣"];
+		var result = SEED + " "+ cardtype + "\r\n||#️⃣" + digits.slice(0, SIZE).join("") + "\r\n";
 		var j = 0;
 		slots.forEach((slot, i) => {
 			if (SIZE == 3 || SIZE == 4 ? slot % 5 == 1 : slot % SIZE == 1) {
-				result = result + digits[j] + "||";
+				result = result + digits[j];
 				j++;
 			}
 
@@ -165,9 +165,10 @@ var bingo = function (size) {
 			}
 
 			if (SIZE == 3 || SIZE == 4 ? slot % 5 == SIZE : slot % SIZE == 0) {
-				result = result + "||";
 				if (i != slots.length - 1) {
 					result = result + "\r\n";
+				} else {
+					result = result + "||";
 				}
 			}
 		});
