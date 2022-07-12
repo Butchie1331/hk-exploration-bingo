@@ -185,7 +185,7 @@ var bingo = function (size) {
 		});
 	});
 
-	if (MODE == "standard") {
+	if (MODE == "standard" || MODE == "") {
 		$('.popout').click(function () {
 			var type = null;
 			var line = $(this).attr('id');

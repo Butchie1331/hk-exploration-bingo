@@ -72,6 +72,11 @@
 	background:#772;
 }
 
+.form-label {
+    display: inline-block;
+    width: 3rem;
+}
+
 .whitesquare {
     background-color: white;
 }
