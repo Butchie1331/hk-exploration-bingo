@@ -1211,7 +1211,7 @@ var bingoListJP = {
     },
 
     "TLord": {
-        "Desc": "造反者の長の倒す",
+        "Desc": "造反者の長を倒す",
         "Excludes": ["WhiteLady", "ClothQuest"]
     },
 
@@ -1316,7 +1316,7 @@ var bingoListJP = {
     },
 
     "CrystalCrawler": {
-        "Desc": "狩猟者の書にスイショウズリズリを登録する"
+        "Desc": "スイショウズリズリを倒す"
     },
 
     "Devout": {
@@ -1367,7 +1367,7 @@ var bingoListJP = {
     },
 
     "Mimics": {
-        "Desc": "幼虫モドキを4体倒す"
+        "Desc": "幼虫モドキを4人倒す"
     },
 
     "Myla": {
@@ -1451,7 +1451,7 @@ var bingoListJP = {
     },
 
     "FCharms": {
-        "Desc": "壊れぬチャームを2つ入手する",
+        "Desc": "繊細なチャームを3つ全て入手する",
         "Score": 1.00
     },
 
@@ -1764,7 +1764,7 @@ var bingoListJP = {
     },
 
     "Shops": {
-        "Desc": "4つの店に訪問する（スライ、イゼルダ、サルブラ、足を喰らう者）",
+        "Desc": "4つの店の商品を見る（スライ、イゼルダ、サルブラ、足を喰らう者）",
         "Excludes": ["Cloth"]
     },
 
@@ -1896,7 +1896,7 @@ var bingoListJP = {
     },
 
     "Brumm": {
-        "Desc": "ブラムの炎を入手する",
+        "Desc": "彼方の村のブラムに話しかける（要：グリムの子）",
         "Excludes": ["CarefreeMelody"]
     },
 
@@ -1915,7 +1915,7 @@ var bingoListJP = {
     },
 
     "CrestElevator": {
-        "Desc": "都の紋章を使用する ＆ 涙の都の2か所の大きなエレベーターに乗る",
+        "Desc": "都の紋章を使用するか、涙の都の2か所の大きなエレベーターで移動する",
         "Score": 1.30
     },
 
@@ -1931,7 +1931,7 @@ var bingoListJP = {
     },
 
     "DefenderSign": {
-        "Desc": "イズマの森の手前のフンコロ騎士の看板を読む"
+        "Desc": "イズマの森の手前のフンコロ騎士の看板をチェックする"
     },
 
     "DirtmouthElevator": {
@@ -1956,11 +1956,11 @@ var bingoListJP = {
     },
 
     "GoamGarpede": {
-        "Desc": "狩猟者の書にゴームとガーピードを登録する"
+        "Desc": "ゴームとガーピードを狩猟者の書に登録する場所をチェックする"
     },
 
     "Jiji": {
-        "Desc": "ジジの小屋を開ける"
+        "Desc": "ジジの小屋に入る"
     },
 
     "HopperHell": {
@@ -2023,7 +2023,7 @@ var bingoListJP = {
     },
 
     "Lumafly": {
-        "Desc": "狩猟者の書にデンゲキルマバエを登録する"
+        "Desc": "デンゲキルマバエを狩猟者の書に登録する場所をチェックする"
     },
 
     "MaskMaker": {
@@ -2036,7 +2036,7 @@ var bingoListJP = {
     },
 
     "MossProphet": {
-        "Desc": "コケの預言者におじぎをする（↓を入力、生死は問わない）"
+        "Desc": "コケの預言者にお辞儀をする（↓を入力、生死は問わない）"
     },
 
     "MrMushroom1": {
@@ -2088,7 +2088,7 @@ var bingoListJP = {
     },
 
     "Revek": {
-        "Desc": "レヴェックの攻撃を死なずに3回パリィする",
+        "Desc": "レヴェックの攻撃を死なずに釘で3回パリィする",
         "Excludes": ["ShrineOfBelievers"]
     },
 
@@ -2119,7 +2119,7 @@ var bingoListJP = {
     },
 
     "Tendrils": {
-        "Desc": "狩猟者の書に虚無の触手を登録する"
+        "Desc": "虚無の触手を狩猟者の書に登録する場所をチェックする"
     },
 
     "Tiso": {
