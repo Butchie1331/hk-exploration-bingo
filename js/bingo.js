@@ -19,6 +19,7 @@ var bingo = function (size) {
 	var SIZE = MODE == "roguelike" ? 13 : Number.isInteger(parseInt(gup('size'))) ? parseInt(gup('size')) : size;
 	var START = gup("start");
 	var GOAL = gup("goal");
+	var LANG = gup("lang");
 
 	var slots = [];
 	var defaultStartSlots = [];
@@ -139,7 +140,7 @@ var bingo = function (size) {
 	Math.seedrandom(SEED); //sets up the RNG
 
 	var results = $("#results");
-	results.append("<p>HK Bingo JP <strong>v1</strong>&emsp;Seed: <strong>" +
+	results.append("<img src='img/en.png' alt='English' onclick='translateToEN();'><img src='img/jp.png' alt='Japanese' onclick='translateToJP();'><p>Seed: <strong>" +
 		SEED + "</strong>&emsp;Card type: <strong>" + cardtype + "</strong></p>");
 
 	if (MODE != "roguelike") {
@@ -148,7 +149,7 @@ var bingo = function (size) {
 
 	$("#copyResultButton").click(function () {
 		var digits = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "0️⃣", "1️⃣", "2️⃣", "3️⃣"];
-		var result = SEED + " "+ cardtype + "\r\n||#️⃣" + digits.slice(0, SIZE).join("") + "\r\n";
+		var result = SEED + " " + cardtype + "\r\n||#️⃣" + digits.slice(0, SIZE).join("") + "\r\n";
 		var j = 0;
 		slots.forEach((slot, i) => {
 			if (SIZE == 3 || SIZE == 4 ? slot % 5 == 1 : slot % SIZE == 1) {
@@ -489,6 +490,10 @@ var bingo = function (size) {
 			$('#bingosync-goals-hidden').text(bingosync_goals);
 		}
 
+		if (LANG == "en") {
+			translateToEN();
+		}
+
 		$(".loader").remove();
 		$("#results").removeClass("mask");
 	};
@@ -506,6 +511,7 @@ function reseedPage(type) {
 	var qSize = "";
 	var qStart = "";
 	var qGoal = "";
+	var qLang = "";
 
 	if ($("#random-seed").is(":checked")) {
 		qSeed = "?seed=" + Math.ceil(MAX_SEED * Math.random());
@@ -558,7 +564,12 @@ function reseedPage(type) {
 		}
 	}
 
-	window.location = qSeed + qCustom + qType + qMode + qSize + qStart + qGoal;
+	const params = new URLSearchParams(window.location.search);
+	if (params.get("lang") != null) {
+		qLang = "&lang=" + params.get("lang");
+	}
+
+	window.location = qSeed + qCustom + qType + qMode + qSize + qStart + qGoal + qLang;
 	return false;
 }
 

@@ -103,6 +103,10 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2045c0', endColorstr='#1e3294',GradientType=0 );
 }
 
+#results img {
+	cursor: pointer;
+}
+
 #copyResultButton {
     cursor: pointer;
     font-weight: bold;
