@@ -1,5 +1,5 @@
-# Hollow Knight Exploration Bingo JP
+# Hollow Knight Exploration Bingo
 
-Generator for Hollow Knight Exploration Bingo in Japanese.
+Generator for Hollow Knight Exploration Bingo.
 
 Originally developed by lepelog for BotW.
