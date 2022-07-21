@@ -2194,7 +2194,7 @@ function gup(name) {
 
 var MODE = gup("mode");
 var SIZE = MODE == "roguelike" ? 13 : Number.isInteger(parseInt(gup('size'))) ? parseInt(gup('size')) : 5;
-var MAX_SLOT = SIZE <= 5 ? 25 : SIZE ** 2;
+var MAX_SLOT = MODE == "roguelike" ? 260 : SIZE <= 5 ? 25 : SIZE ** 2;
 
 function translateToEN() {
     for (i = 1; i <= MAX_SLOT; i++) {
